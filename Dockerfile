@@ -1,24 +1,16 @@
-#version 1.0
-FROM ubuntu
-#maintainer 
-MAINTAINER zhangzhen
-#install 
-RUN apt-get clean \
- && apt-get update \
- && apt-get install -y vim \
- && apt-get install -y openssh-server \
- && mkdir -p /var/run/sshd
+FROM ubuntu:14.04
 
-#open port 22 20001
-EXPOSE 22
-EXPOSE 20001
-#cmd ["/usr/sbin/sshd","-D"]
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 
-RUN  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+ENV MONGO_MAJOR 3.0
+RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/$MONGO_MAJOR main" > /etc/apt/sources.list.d/mongodb-org.list
 
-RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main">/etc/apt/sources.list.d/mongodb-org.list
-#install mongodb
-RUN apt-get update && apt-get install -y mongodb-org
-#create the mongodb data directory
+# Install MongoDB
+RUN apt-get update
+RUN sudo apt-get install -y mongodb-org=3.0.4 mongodb-org-server=3.0.4 mongodb-org-shell=3.0.4 mongodb-org-mongos=3.0.4 mongodb-org-tools=3.0.4
+
+# Create the MongoDB data directory
 RUN mkdir -p /data/db
+
+EXPOSE 27017
 ENTRYPOINT ["usr/bin/mongod"]

@@ -17,11 +17,10 @@ RUN apt-get clean \
 && mkdir -p data \
 && cd bin/ \
 && ./mongod -f /etc/mongodb_master.conf \
-#&& ./mongod -f /etc/mongodb_slave.conf \
-#&& ./mongod -f /etc/mongodb_arbiter.conf \
+
 
 # Create the MongoDB data directory
 #RUN mkdir -p /data/db
 
-#EXPOSE 27017
-#ENTRYPOINT ["usr/bin/mongod"]
+EXPOSE 27017
+

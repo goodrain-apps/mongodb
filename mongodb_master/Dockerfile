@@ -18,6 +18,7 @@ RUN echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu trusty/mongodb-o
 
 # Create the MongoDB data directory
 # && mkdir -p /data/db
+&& service mongod start
 
 EXPOSE 27017
 ENTRYPOINT ["usr/bin/mongod"]

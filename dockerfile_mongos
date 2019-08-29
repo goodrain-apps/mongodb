@@ -1,2 +1,0 @@
-from ubuntu/mongo:latest
-entrypoint ["usr/bin/mongos"]

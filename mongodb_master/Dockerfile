@@ -4,7 +4,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF505
 ENV MONGO_MAJOR 3.2
 ADD mongodb_master.conf /usr/local/mongodb
 # Install MongoDB
-RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list \
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
 && apt-get update \ 
 && apt-get install -y vim wget iproute openssh-server mongodb-org \
 #&& cp  /etc/mongodb_master.conf  /usr/local/mongodb \

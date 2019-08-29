@@ -19,5 +19,5 @@ RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mo
 #&& mkdir -p /data/db \
 #&& chmod 777 /data/*
 
-EXPOSE 27017
-ENTRYPOINT ["usr/bin/mongod"]
+#EXPOSE 27017
+#ENTRYPOINT ["usr/bin/mongod"]

@@ -4,7 +4,7 @@ ENV MONGO_MAJOR 3.4.2
 ADD mongodb_arbiter.conf /etc/
 RUN apt-get clean \
 && apt-get update \
-&& apt-get install -y vim wget openssh-server \
+&& apt-get install -y vim wget iproute openssh-server \
 && wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.2.tgz \
 && tar -zxvf mongodb-linux-x86_64-3.4.2.tgz \
 && mv mongodb-linux-x86_64-3.4.2/ /usr/local/mongodb  \

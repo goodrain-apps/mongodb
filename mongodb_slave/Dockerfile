@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-
 ENV MONGO_MAJOR 3.4.2
 ADD mongodb_slave.conf /etc/
 RUN apt-get clean \
@@ -21,5 +19,5 @@ RUN apt-get clean \
 # Create the MongoDB data directory
 #RUN mkdir -p /data/db
 
-EXPOSE 27017
+#EXPOSE 27017
 

@@ -17,8 +17,8 @@ RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mo
 #&& ./mongod -f /etc/mongodb_master.conf \
 
 # Create the MongoDB data directory
-&& mkdir -p /data/db \
-&& chmod 777 /data/*
+#&& mkdir -p /data/db \
+#&& chmod 777 /data/*
 
 EXPOSE 27017
 ENTRYPOINT ["usr/bin/mongod"]

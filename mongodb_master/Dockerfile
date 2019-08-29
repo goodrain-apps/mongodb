@@ -18,7 +18,7 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multive
 #&& ./mongod -f /etc/mongodb_master.conf \
 
 # Create the MongoDB data directory
-&& mkdir -p /data/db
+# && mkdir -p /data/db
 
 EXPOSE 27017
 ENTRYPOINT ["usr/bin/mongod"]

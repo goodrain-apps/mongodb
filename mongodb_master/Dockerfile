@@ -8,7 +8,7 @@ RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/$MONGO_MAJOR
 # Install MongoDB
 RUN apt-get update \ 
 && apt-get install -y vim wget iproute openssh-server \
-&& mongodb-org=3.2.9 mongodb-org-server=3.2.9 mongodb-org-shell=3.2.9 mongodb-org-mongos=3.2.9 mongodb-org-tools=3.2.9
+&& mongodb-org=3.2.9 mongodb-org-server=3.2.9 mongodb-org-shell=3.2.9 mongodb-org-mongos=3.2.9 mongodb-org-tools=3.2.9 \
 && cp  /etc/mongodb_master.conf  /usr/local/mongodb \
 && cd /usr/local/mongodb \
 && mkdir -p conf \

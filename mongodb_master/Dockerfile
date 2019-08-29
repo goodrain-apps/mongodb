@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-
 ENV MONGO_MAJOR 3.4.2
 ADD mongodb_master.conf /etc/
 RUN apt-get clean \

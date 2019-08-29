@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+RUN && apt-get update \ 
+&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
 ENV MONGO_MAJOR 3.2
 ADD mongodb_master.conf /usr/local/mongodb

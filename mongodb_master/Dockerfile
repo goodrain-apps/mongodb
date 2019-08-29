@@ -1,13 +1,14 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04
+
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
 ENV MONGO_MAJOR 3.4.2
 ADD mongodb_master.conf /etc/
 RUN apt-get clean \
+&& echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list \
 && apt-get update \
 && apt-get install -y vim wget iproute openssh-server \
-&& wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.2.tgz \
-&& tar -zxvf mongodb-linux-x86_64-3.4.2.tgz \
-&& mv mongodb-linux-x86_64-3.4.2/ /usr/local/mongodb  \
+&& mongodb-org mongodb-org=3.2.9 mongodb-org-server=3.2.9 mongodb-org-shell=3.2.9 mongodb-org-mongos=3.2.9 mongodb-org-tools=3.2.9 \
 && cp  /etc/mongodb_master.conf  /usr/local/mongodb \
 && cd /usr/local/mongodb \
 && mkdir -p conf \
@@ -15,6 +16,7 @@ RUN apt-get clean \
 && mkdir -p data \
 && cd bin/ \
 && ./mongod -f /etc/mongodb_master.conf \
+&& service mongodb start
 
 #Create the MongoDB data directory
 #RUN mkdir -p /data/db

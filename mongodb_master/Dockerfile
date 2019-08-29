@@ -19,4 +19,4 @@ RUN apt-get clean \
 # Create the MongoDB data directory
 #RUN mkdir -p /data/db
 
-EXPOSE 27017
+#EXPOSE 27017

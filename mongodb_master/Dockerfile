@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-RUN && apt-get update \ 
+RUN apt-get update \ 
 && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
 ENV MONGO_MAJOR 3.2

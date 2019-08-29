@@ -1,7 +1,6 @@
 FROM ubuntu:16.04
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
-ENV MONGO_MAJOR 3.2
 ADD mongodb_master.conf /usr/local/mongodb
 # Install MongoDB
 RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list \

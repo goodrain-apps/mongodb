@@ -1,11 +1,10 @@
 FROM ubuntu:14.04
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
 ENV MONGO_MAJOR 3.2
 ADD mongodb_master.conf /usr/local/mongodb
 # Install MongoDB
-RUN echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list \
+RUN "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list \
 && apt-get update \ 
 && apt-get install -y vim wget iproute openssh-server mongodb-org \
 #&& cp  /etc/mongodb_master.conf  /usr/local/mongodb \
@@ -17,7 +16,8 @@ RUN echo "deb [ arch=amd64 ] http://repo.mongodb.org/apt/ubuntu trusty/mongodb-o
 #&& ./mongod -f /etc/mongodb_master.conf \
 
 # Create the MongoDB data directory
-# && mkdir -p /data/db
+&& mkdir -p /data/db \
+&& chmod 777 /data/*
 
 EXPOSE 27017
 ENTRYPOINT ["usr/bin/mongod"]

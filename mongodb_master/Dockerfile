@@ -6,7 +6,7 @@ ADD mongodb_master.conf /usr/local/mongodb
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-3.2.list \
 && apt-get update \ 
 && apt-get install -y mongodb-org --force-yes \
-&& service mongod start
+##&& service mongod start
 #&& apt-get install -y vim wget iproute openssh-server  \
 #&& cp  /etc/mongodb_master.conf  /usr/local/mongodb \
 #&& cd /usr/local/mongodb \

@@ -17,7 +17,8 @@ RUN apt-get clean \
 && ./mongod -f /etc/mongodb_slave.conf \
 
 # Create the MongoDB data directory
-#RUN mkdir -p /data/db
+&& mongod --dbpath /data/db \
+&& service mongod start
 
 #EXPOSE 27017
 

@@ -1,24 +1,22 @@
 FROM ubuntu:14.04
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-ADD mongodb_master.conf /usr/local/mongodb
-# Install MongoDB
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-3.2.list \
-&& apt-get update \ 
-&& apt-get install -y mongodb-org --force-yes \
-##&& service mongod start
-#&& apt-get install -y vim wget iproute openssh-server  \
-#&& cp  /etc/mongodb_master.conf  /usr/local/mongodb \
-#&& cd /usr/local/mongodb \
-#&& mkdir -p conf \
-#&& mkdir -p logs \
-#&& mkdir -p data \
-#&& cd bin/ \
-#&& ./mongod -f /etc/mongodb_master.conf \
+ENV MONGO_MAJOR 3.4.2
+ADD mongodb_slave.conf /etc/
+RUN apt-get clean \
+&& apt-get update \
+&& apt-get install -y vim wget iproute openssh-server \
+&& wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.2.tgz \
+&& tar -zxvf mongodb-linux-x86_64-3.4.2.tgz \
+&& mv mongodb-linux-x86_64-3.4.2/ /usr/local/mongodb  \
+&& cp /etc/mongodb_slave.conf  /usr/local/mongodb \
+&& cd /usr/local/mongodb \
+&& mkdir -p conf \
+&& mkdir -p logs \
+&& mkdir -p data \
+&& cd bin/ \
+&& ./mongod -f /etc/mongodb_slave.conf \
 
 # Create the MongoDB data directory
-#&& mkdir -p /data/db \
-#&& chmod 777 /data/*
+#RUN mkdir -p /data/db
 
 #EXPOSE 27017
-#ENTRYPOINT ["usr/bin/mongod"]

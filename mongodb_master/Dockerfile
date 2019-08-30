@@ -3,9 +3,9 @@ FROM ubuntu:14.04
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 ADD mongodb_master.conf /usr/local/mongodb
 # Install MongoDB
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list \
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-3.2.list \
 && apt-get update \ 
-&& apt-get install -y mongodb-org \
+&& apt-get install -y mongodb-org --force-yes \
 && service mongod start
 #&& apt-get install -y vim wget iproute openssh-server  \
 #&& cp  /etc/mongodb_master.conf  /usr/local/mongodb \

@@ -13,7 +13,7 @@ RUN apt-get clean \
 && mkdir -p logs \
 && mkdir -p data \
 && cd bin/ \
-&& ./mongod -f /etc/mongodb_slave.conf \
+&& ./mongod -f /etc/mongodb_master.conf \
 
 # Create the MongoDB data directory
 #RUN mkdir -p /data/db

@@ -1,9 +1,9 @@
 #！bin/bash
 
- #-m PRIMARY节点的ip:port
- #-s SECONDARY节点的ip:port
- #-a ARBITER节点的ip:port
- #-r replset名称
+ # -m PRIMARY节点的ip:port
+ # -s SECONDARY节点的ip:port
+ # -a ARBITER节点的ip:port
+ # -r replset名称
 
 MASTER_ADDRESS=
 SLAVE_ADDRESS=

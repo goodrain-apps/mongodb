@@ -1,6 +1,5 @@
 FROM ubuntu:14.04
 
-ENV MONGO_MAJOR 3.4.2
 ADD mongodb_slave.conf /etc/
 RUN apt-get clean \
 && apt-get update \

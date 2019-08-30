@@ -1,0 +1,47 @@
+version: '2'
+services:
+  configsrv:
+    image: mongo
+    command: mongod --keyFile /data/configdb/mongodb-keyfile --oplogSize 1024 --replSet configrs --port 27017 --configsvr --wiredTigerCacheSizeGB 5
+    volumes:
+      - /data/configsrv_db:/data/configdb
+    ports:
+      - "27018:27017"
+    restart:
+      always
+    container_name:
+      configsrv
+    ulimits:
+      nofile:
+        soft: 300000
+        hard: 300000
+  rs1_node:
+    image: mongo
+    command: mongod --keyFile /data/db/mongodb-keyfile --oplogSize 10240 --replSet rs1 --directoryperdb --port 27017 --shardsvr
+    volumes:
+      - /data/rs1_node_db:/data/db
+    ports:
+      - "27019:27017"
+    restart:
+      always
+    container_name:
+      rs1_node
+    ulimits:
+      nofile:
+        soft: 300000
+        hard: 300000
+  router:
+    image: mongo
+    command: mongos --keyFile /data/db/mongodb-keyfile --configdb configrs/ServerA:27018,ServerB:27018,ServerC:27018
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/router_db:/data/db
+    restart:
+      always
+    container_name:
+      router
+    ulimits:
+      nofile:
+        soft: 300000
+        hard: 300000
